@@ -1,0 +1,45 @@
+<form>
+  <div>
+    <label for="sHoten">Họ và tên : </label>
+    <input [(ngModel)]="student.sHoten" type="text" id="sHoten" name="sHoten">
+  </div>
+  <div>
+    <label for="bGioitinh">Giới tính : </label>
+    <input [(ngModel)]="student.bGioitinh" type="radio" id="bGioitinh" name="bGioitinh" [value]="true"> Nam
+    <input [(ngModel)]="student.bGioitinh" type="radio" id="bGioitinh" name="bGioitinh" [value]="false"> Nữ
+  </div>
+  <div>
+    <label for="tNgaysinh">Ngày sinh : </label>
+    <input [(ngModel)]="student.tNgaysinh" type="date" id="tNgaysinh" name="tNgaysinh" [value]="student.tNgaysinh">
+  </div>
+  <button (click)="handlingStudent()">Thêm</button>
+  <button (click)="btnHuy()">Reset</button>
+</form>
+<table border="1">
+  <thead>
+    <tr>
+      <td>STT</td>
+      <td>ID</td>
+      <td>Họ và tên</td>
+      <td>Giới tính</td>
+      <td>Ngày sinh</td>
+      <td>Sửa</td>
+      <td>Xóa</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of glstStudent; let i = index">
+      <td> {{i+1}} </td>
+      <td>{{student.id}}</td>
+      <td>{{student.sHoten}}</td>
+      <td>
+        <div *ngIf="student.bGioitinh; then male else female"></div>
+        <ng-template #male>Nam</ng-template>
+        <ng-template #female>Nữ</ng-template>
+      </td>
+      <td>{{ student.tNgaysinh | date:'yyyy/MM/dd' }}</td>
+      <td><button class="btn btnEdit" (click)="editStudent(student.id)"> Sửa </button></td>
+      <td><button class="btn btnDelete" (click)="deleteStudent(student.id)">Xóa</button></td>
+    </tr>
+  </tbody>
+</table>

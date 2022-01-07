@@ -1,0 +1,13 @@
+.btn{
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.btnEdit{
+  background: blue;
+}
+.btnDelete{
+  background: red;
+  opacity: 1;
+}
